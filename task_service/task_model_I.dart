@@ -1,9 +1,11 @@
 class Task {
+  // Class fields
   int? _userId;
   int? _id;
   String? _title;
   bool? _completed;
 
+  // Constructors
   Task({int? userId, int? id, String? title, bool? completed}) {
     if (userId != null) {
       this._userId = userId;
@@ -19,6 +21,7 @@ class Task {
     }
   }
 
+  // Getters and Setters
   int? get userId => _userId;
   set userId(int? userId) => _userId = userId;
   int? get id => _id;
@@ -46,17 +49,3 @@ class Task {
 }
 
 
-// [
-//     {
-//         "userId": 1,
-//         "id": 1,
-//         "title": "delectus aut autem",
-//         "completed": false
-//     },
-//     {
-//         "userId": 1,
-//         "id": 2,
-//         "title": "quis ut nam facilis et officia qui",
-//         "completed": false
-//     },
-// ]
