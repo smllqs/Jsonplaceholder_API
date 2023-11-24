@@ -1,26 +1,19 @@
+import 'dart:collection';
+
 import 'task_data.dart';
 import 'task_model.dart';
 
 class TaskManager {
-  List<Map<String, dynamic>> _data = [];
   List<Task> _tasks = [];
 
-  TaskManager.convert(List<dynamic> data) {
-    for (var element in data) {
-      _data.add(element);
-    }
-    initialiseTasks();
-  }
+  UnmodifiableListView<Task> get tasks => UnmodifiableListView(_tasks);
 
-  void initialiseTasks() {
-    for (var element in _data) {
+  Future<void> initialiseTasks() async {
+    final data = await TaskData().fetchdata();
+    for (var element in data) {
       final task = Task.fromJson(element);
       _tasks.add(task);
     }
-  }
-
-  void printList() {
-    print(_data);
   }
 
   void printTasks() {
@@ -31,7 +24,7 @@ class TaskManager {
 }
 
 void main() async {
-  final data = await TaskData().fetchdata();
-  TaskManager manager = TaskManager.convert(data);
-  manager.printTasks();
+  TaskManager manager = TaskManager();
+  await manager.initialiseTasks();
+  print(manager.tasks);
 }
