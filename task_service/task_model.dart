@@ -20,6 +20,12 @@ class Task {
       this._completed = completed;
     }
   }
+  Task.fromJson(Map<String, dynamic> json) {
+    _userId = json['userId'];
+    _id = json['id'];
+    _title = json['title'];
+    _completed = json['completed'];
+  }
 
   // Getters and Setters
   int? get userId => _userId;
@@ -31,21 +37,17 @@ class Task {
   bool? get completed => _completed;
   set completed(bool? completed) => _completed = completed;
 
-  Task.fromJson(Map<String, dynamic> json) {
-    _userId = json['userId'];
-    _id = json['id'];
-    _title = json['title'];
-    _completed = json['completed'];
-  }
-
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['userId'] = this._userId;
     data['id'] = this._id;
     data['title'] = this._title;
     data['completed'] = this._completed;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'title: $_title, completed: $_completed';
+  }
 }
-
-
